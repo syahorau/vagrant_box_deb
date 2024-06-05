@@ -1,4 +1,5 @@
-1 - Create vagrant's box for dnf VM
+1 - Create vagrant's box for dnf VM.
+
 2 - VM reboot one time and then shutdown.
 3 - Commands for create box:
   vagrant package --base "name vm in VirtualBox"
