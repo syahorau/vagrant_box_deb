@@ -7,7 +7,6 @@ a=$(/bin/find / -name part2.sh)
 cp "$a" /root
 echo '#!/bin/bash
 /root/part2.sh' >> /etc/rc.local
-
 chmod +x /etc/rc.local
 
 #Dell folder with scrs
@@ -35,7 +34,7 @@ sed -i \
 #mount conf_folder
 mount -t cifs "$conf_folder" /mnt -o guest
 
-# Set oh-my zsh
+# Set oh-my-zsh
 chsh -s $(which zsh)
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
@@ -54,7 +53,7 @@ for i in $(echo "$users"); do
 y
 EOF
       /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
-      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     fi
 done
 
