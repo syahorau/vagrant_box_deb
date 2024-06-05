@@ -63,7 +63,7 @@ done
 tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /home/siarhei/
 tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /etc/skel/
 tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /root/
-cp -rf /root/.oh_my_zsh /etc/skel/
+cp -rf /root/.oh-my-zsh /etc/skel/
 cp -rf /root/.zsh-syntax-highlighting /etc/skel/
 
 #Copy SSH keys
