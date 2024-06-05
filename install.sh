@@ -1,7 +1,6 @@
 #!/bin/bash
 #Vars
 conf_folder='//192.168.100.100/docs/itm/'
-set -x
 # Create the second task
 a=$(/bin/find / -name part2.sh)
 cp "$a" /root
