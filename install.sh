@@ -108,7 +108,13 @@ echo '127.0.0.1 d12base
 # Create task for update omz
 echo "#!/bin/zsh
 /bin/zsh -i -c 'omz update'
-su siarhei -c \"/bin/zsh -i -c 'omz update'\"" > /bin/update-omz.sh
+users=$(ls -1 /home)
+IFS=$'\n'
+for i in $(echo \"$users\"); do
+    if [ \"$i\" != \"lost+found\" ]; then
+      su \"$i\" -c \"/bin/zsh -i -c 'omz update'\"
+    fi
+done" > /bin/update-omz.sh
 chmod +x /bin/update-omz.sh
 
 echo "[Unit]
