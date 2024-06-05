@@ -16,8 +16,8 @@ rm -rf "$a"
 
 #Install apps
 apt update
-apt upgrade -y
-apt install -y mc zsh ssh sudo tree ntp bash-completion git tmux vim-gtk3 curl cifs-utils ntfs-3g build-essential dkms linux-headers-$(uname -r) gpm gpg firewalld
+
+apt install -y mc zsh ssh sudo tree ntp bash-completion git tmux vim-gtk3 curl cifs-utils ntfs-3g firewalld
 
 # Change config's files for useradd and adduser
 sed -i \
@@ -124,6 +124,11 @@ WantedBy=multi-user.target" > /etc/systemd/system/update-omz.timer
 
 systemctl daemon-reload
 systemctl enable update-omz.timer
+
+apt upgrade -y
+apt install -y build-essential dkms linux-headers-$(uname -r) gpm gpg
+
+
 
 # Reboot VM
 systemctl reboot
