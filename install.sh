@@ -41,7 +41,8 @@ users=$(ls -1 /home)
 IFS=$'\n'
 for i in $(echo "$users"); do
     if [[ "$i" != "lost+found" ]]; then
-      chsh -s $(which zsh)
+      sudo -u "$i" chsh -s $(which zsh)
+      export PATH=$HOME/bin:/usr/local/bin:$PATH
       sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
 y
 EOF
@@ -125,4 +126,4 @@ systemctl daemon-reload
 systemctl enable update-omz.timer
 
 # Reboot VM
-shutdown -r +0
+systemctl reboot
