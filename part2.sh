@@ -7,7 +7,7 @@ sh /virtbox/VBoxLinuxAdditions.run && umount /virtbox
 rm -r /virtbox
 rm -r ./VBoxGuestAdditions_7.0.18.iso 
 sed -i "/\/root\/part2\.sh/d" /etc/rc.d/rc.local
-chmod -x /etc/rc.d/rc.local
+rm -rf /etc/rc.local
 rm -f /root/part2.sh
 sudo dd if=/dev/zero of=/EMPTY bs=1M
 sudo rm -f /EMPTY
