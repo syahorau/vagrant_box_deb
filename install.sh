@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 #Vars
 conf_folder='//192.168.100.100/docs/itm/'
 # Create the second task
@@ -52,7 +53,7 @@ for i in $(echo "$users"); do
 y
 EOF
       /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
-      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions --depth 1
     fi
 done
 
