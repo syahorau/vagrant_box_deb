@@ -41,14 +41,14 @@ users=$(ls -1 /home)
 IFS=$'\n'
 for i in $(echo "$users"); do
     if [[ "$i" != "lost+found" ]]; then
-      sudo -u "$i" chsh -s $(which zsh)
-      export PATH=$HOME/bin:/usr/local/bin:$PATH
-      sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
+      /usr/bin/sudo -u "$i" chsh -s $(which zsh)
+      /usr/bin/sudo -u "$i" export PATH=$HOME/bin:/usr/local/bin:$PATH
+      /usr/bin/sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
 y
 EOF
-      sudo -u "$i" export PATH=$HOME/bin:/usr/local/bin:$PATH
-      sudo -u "$i" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
-      sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+      /usr/bin/sudo -u "$i" export PATH=$HOME/bin:/usr/local/bin:$PATH
+      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
+      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     fi
 done
 
