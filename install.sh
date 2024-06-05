@@ -5,8 +5,10 @@ conf_folder='//192.168.100.100/docs/itm/'
 # Create the second task
 a=$(/bin/find / -name part2.sh)
 cp "$a" /root
-chmod +x /etc/rc.d/rc.local
-echo '/root/part2.sh' >> /etc/rc.d/rc.local
+echo '#!/bin/bash
+/root/part2.sh' >> /etc/rc.local
+
+chmod +x /etc/rc.local
 
 #Dell folder with scrs
 a=$(/bin/find / -name vagrant_box_deb)
@@ -33,6 +35,23 @@ sed -i \
 #mount conf_folder
 mount -t cifs "$conf_folder" /mnt -o guest
 
+# Set oh-my zsh
+users=$(ls -1 /home)
+
+IFS=$'\n'
+for i in $(echo "$users"); do
+    if [[ "$i" != "lost+found" ]]; then
+      chsh -s $(which zsh)
+      sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
+y
+EOF
+      sudo -u "$i" export PATH=$HOME/bin:/usr/local/bin:$PATH
+      sudo -u "$i" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
+      sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    fi
+done
+
+
 # Copy come config for users and new users
 tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /home/siarhei/
 tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /etc/skel/
@@ -45,12 +64,8 @@ cp -rf /mnt/confs/ssh/ssh-siarhei/. /home/siarhei/.ssh/
 chown -R siarhei:siarhei /home/siarhei
 chown -R root:root /root
 
-# Change shell
-chsh -s $(which zsh)
-chsh -s $(which zsh) siarhei
-
 #Add user vagrant
-useradd -m vagrant
+/usr/sbin/useradd -m vagrant
 echo "vagrant:vagrant" | chpasswd
 echo "vagrant ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vagrant
 echo "siarhei ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/siarhei
