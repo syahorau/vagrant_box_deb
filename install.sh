@@ -49,7 +49,7 @@ users=$(ls -1 /home)
 IFS=$'\n'
 for i in $(echo "$users"); do
     if [ "$i" != "lost+found" ]; then
-      /usr/bin/sudo -u "$i" chsh -s $(which zsh)
+      /usr/bin/sudo -u "$i" chsh -s /bin/zsh "$i"
       /usr/bin/sudo -u "$i" export PATH=$HOME/bin:/usr/local/bin:$PATH
       /usr/bin/sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
 y
