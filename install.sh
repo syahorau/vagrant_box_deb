@@ -41,7 +41,7 @@ y
 EOF
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 
 users=$(ls -1 /home)
 IFS=$'\n'
