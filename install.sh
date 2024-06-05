@@ -43,6 +43,7 @@ EOF
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
 git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /root/
 
 users=$(ls -1 /home)
 IFS=$'\n'
@@ -52,16 +53,15 @@ for i in $(echo "$users"); do
       /usr/bin/sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
 y
 EOF
-      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
-      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions --depth 1
+      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "/home/${i}/.zsh-syntax-highlighting" --depth 1
+      /usr/bin/sudo -u "$i" git clone https://github.com/zsh-users/zsh-autosuggestions "/home/${i}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+      tar -xf /mnt/confs/linux_users/base_user.tar.gz -C "/home/${i}/"
     fi
 done
 
 
 # Copy come config for users and new users
-tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /home/siarhei/
 tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /etc/skel/
-tar -xf /mnt/confs/linux_users/base_user.tar.gz -C /root/
 cp -rf /root/.oh-my-zsh /etc/skel/
 cp -rf /root/.zsh-syntax-highlighting /etc/skel/
 
