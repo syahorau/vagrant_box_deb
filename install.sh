@@ -1,5 +1,6 @@
 #!/bin/bash
-set -x
+read -p "enter hostname: " vm_name
+
 #Vars
 conf_folder='//192.168.100.100/docs/itm/'
 # Create the second task
@@ -105,9 +106,9 @@ firewall-cmd --permanent --zone=my-zone --add-icmp-block=destination-unreachable
 firewall-cmd --permanent --zone=my-zone --add-icmp-block=time-exceeded
 
 # Set hostname 
-hostnamectl set-hostname d12base
-echo '127.0.0.1 d12base
-::1 d12base' > /etc/hosts
+hostnamectl set-hostname "$vm_name"
+echo "127.0.0.1 $vm_name
+::1 $vm_name" > /etc/hosts
 
 # Create task for update omz
 echo "#!/bin/zsh
