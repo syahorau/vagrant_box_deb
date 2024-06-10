@@ -17,7 +17,7 @@ rm -rf "$a"
 #Install apps
 apt update
 
-apt install -y mc zsh ssh sudo tree ntp bash-completion git tmux vim-gtk3 curl cifs-utils ntfs-3g firewalld
+apt install -y mc zsh ssh sudo tree ntp bash-completion git tmux vim-gtk3 curl cifs-utils ntfs-3g
 
 # Change config's files for useradd and adduser
 sed -i \
