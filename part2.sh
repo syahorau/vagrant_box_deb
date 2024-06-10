@@ -2,7 +2,7 @@
 #create folder
 sleep 10s
 wget https://download.virtualbox.org/virtualbox/7.0.18/VBoxGuestAdditions_7.0.18.iso && mount ./VBoxGuestAdditions_7.0.18.iso /mnt
-sh /virtbox/VBoxLinuxAdditions.run 
+sh /mnt/VBoxLinuxAdditions.run 
 sleep 10s
 umount /mnt
 rm -rf ./VBoxGuestAdditions_7.0.18.iso 
