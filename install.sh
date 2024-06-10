@@ -93,17 +93,17 @@ chmod 0600 /home/vagrant/.ssh/authorized_keys && \
 chown -R vagrant /home/vagrant/.ssh
 
 # Set firewalld
-firewall-cmd --permanent --new-zone=my-zone
-firewall-cmd --reload
-firewall-cmd --permanent --zone=my-zone --add-service=ssh
-firewall-cmd --permanent --zone=my-zone --add-service=dhcp
-firewall-cmd --permanent --zone=my-zone --add-service=dns
-firewall-cmd --permanent --zone=my-zone --add-interface=enp0s8
-firewall-cmd --permanent --zone=my-zone --add-icmp-block-inversion
-firewall-cmd --permanent --zone=my-zone --add-icmp-block=echo-request
-firewall-cmd --permanent --zone=my-zone --add-icmp-block=echo-reply
-firewall-cmd --permanent --zone=my-zone --add-icmp-block=destination-unreachable
-firewall-cmd --permanent --zone=my-zone --add-icmp-block=time-exceeded
+#firewall-cmd --permanent --new-zone=my-zone
+#firewall-cmd --reload
+#firewall-cmd --permanent --zone=my-zone --add-service=ssh
+#firewall-cmd --permanent --zone=my-zone --add-service=dhcp
+#firewall-cmd --permanent --zone=my-zone --add-service=dns
+#firewall-cmd --permanent --zone=my-zone --add-interface=enp0s8
+#firewall-cmd --permanent --zone=my-zone --add-icmp-block-inversion
+#firewall-cmd --permanent --zone=my-zone --add-icmp-block=echo-request
+#firewall-cmd --permanent --zone=my-zone --add-icmp-block=echo-reply
+#firewall-cmd --permanent --zone=my-zone --add-icmp-block=destination-unreachable
+#firewall-cmd --permanent --zone=my-zone --add-icmp-block=time-exceeded
 
 # Set hostname 
 hostnamectl set-hostname "$vm_name"
