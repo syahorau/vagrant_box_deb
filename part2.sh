@@ -11,6 +11,7 @@ umount /virtbox && \
 rm -rf /virtbox && \
 rm -rf /etc/rc.local
 rm -ff /root/part2.sh
-sudo dd if=/dev/zero of=/EMPTY bs=1M
-sudo rm -f /EMPTY
-shutdown -h +0
+echo '#!/bin/bash
+/root/part3.sh' >> /etc/rc.local
+chmod +x /etc/rc.local
+shutdown -r +0
