@@ -104,7 +104,7 @@ EOF
 done
 
 chmod -R 600 /home/siarhei/.ssh/id*
-chmod -R 644 /home/siarhei/.ssh/id_rsa*
+chmod -R 644 /home/siarhei/.ssh/*pub
 chmod -R 600 /home/vagrant/.ssh/vagrant*
 chmod -R 644 /home/vagrant/.ssh/vagrant.pub*
 
