@@ -67,8 +67,6 @@ cp -rf "/itm/confs/ssh/ssh-win-personal/." /home/siarhei/.ssh/
 
 chown -R siarhei:siarhei /home/siarhei
 chown -R root:root /root
-chmod -R 600 /home/vagrant/.ssh/vagrant*
-chmod -R 644 /home/vagrant/.ssh/vagrant.pub*
 
 #Add user vagrant
 /usr/sbin/useradd -m vagrant
@@ -88,8 +86,28 @@ cat /tempare/vagrant/keys/vagrant.pub >> /home/vagrant/.ssh/authorized_keys
 cp -r /tempare/vagrant/keys/. /home/vagrant/.ssh/
 chmod 0600 /home/vagrant/.ssh/authorized_keys && \
 chown -R vagrant /home/vagrant/.ssh
+
+cd /home/vagrant/.ssh
+files=$(ls -1)
+IFS=$'\n'
+for i in $(echo "$files"); do
+    if [ "$i" != "lost+found" ]; then
+      /usr/bin/sudo chsh -s /bin/zsh "$i"
+      /usr/bin/sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
+y
+EOF
+      sudo cp -r "/tempare/.zsh-syntax-highlighting" "/home/${i}/.zsh-syntax-highlighting"
+      sudo cp -r "/tempare/zsh-autosuggestions" "/home/${i}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+      sudo cp -r "/tempare/accounts/base_user/." "/home/${i}/"
+      chown -R ${i}:${i} "/home/${i}"
+    fi
+done
+
+chmod -R 600 /home/vagrant/.ssh/vagrant*
+chmod -R 644 /home/vagrant/.ssh/vagrant.pub*
+
 chmod -R 600 /home/siarhei/.ssh/id*
-chmod -R 644 /home/vagrant/.ssh/id_rsa*
+chmod -R 644 /home/siarhei/.ssh/id_rsa*
 
 rm -rf /home/accounts
 
