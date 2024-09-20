@@ -88,9 +88,9 @@ chmod 0600 /home/vagrant/.ssh/authorized_keys && \
 chown -R vagrant /home/vagrant/.ssh
 
 cd /home/vagrant/.ssh
-files=$(ls -1)
+files=$(ls -1 /home)
 IFS=$'\n'
-for i in $(echo "$files"); do
+for i in $(echo "$users"); do
     if [ "$i" != "lost+found" ]; then
       /usr/bin/sudo chsh -s /bin/zsh "$i"
       /usr/bin/sudo -u "$i" sh -c "$(wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" <<EOF
@@ -103,11 +103,10 @@ EOF
     fi
 done
 
-chmod -R 600 /home/vagrant/.ssh/vagrant*
-chmod -R 644 /home/vagrant/.ssh/vagrant.pub*
-
 chmod -R 600 /home/siarhei/.ssh/id*
 chmod -R 644 /home/siarhei/.ssh/id_rsa*
+chmod -R 600 /home/vagrant/.ssh/vagrant*
+chmod -R 644 /home/vagrant/.ssh/vagrant.pub*
 
 rm -rf /home/accounts
 
