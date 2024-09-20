@@ -67,6 +67,8 @@ cp -rf "/itm/confs/ssh/ssh-win-personal/." /home/siarhei/.ssh/
 
 chown -R siarhei:siarhei /home/siarhei
 chown -R root:root /root
+chmod -R 600 /home/vagrant/.ssh/vagrant*
+chmod -R 644 /home/vagrant/.ssh/vagrant.pub*
 
 #Add user vagrant
 /usr/sbin/useradd -m vagrant
@@ -86,8 +88,8 @@ cat /tempare/vagrant/keys/vagrant.pub >> /home/vagrant/.ssh/authorized_keys
 cp -r /tempare/vagrant/keys/. /home/vagrant/.ssh/
 chmod 0600 /home/vagrant/.ssh/authorized_keys && \
 chown -R vagrant /home/vagrant/.ssh
-chmod -R 600 /home/vagrant/.ssh/vagrant*
-chmod -R 644 /home/vagrant/.ssh/vagrant.pub*
+chmod -R 600 /home/siarhei/.ssh/id*
+chmod -R 644 /home/vagrant/.ssh/id_rsa*
 
 rm -rf /home/accounts
 
