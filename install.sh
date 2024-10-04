@@ -39,7 +39,7 @@ a=$(/bin/find / -name vagrant_box_deb)
 rm -rf "$a"
 
 #Install apps
-apt update
+apt update && apt upgrade -y && \
 apt install -y mc zsh ssh sudo tree ntp bash-completion git tmux vim curl cifs-utils ntfs-3g nano &> /dev/null
 
 # Set firewalld
