@@ -2,7 +2,7 @@
 read -p "enter hostname: " vm_name
 apt update && \
 apt install -y debconf-utils && \
-echo 'libc6 libraries/restart-without-asking boolean true' | sudo debconf-set-selections
+echo 'libc6 libraries/restart-without-asking boolean true' |  debconf-set-selections
 
 mkdir /tempare
 mkdir /itm
