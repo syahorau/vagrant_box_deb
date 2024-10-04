@@ -3,7 +3,7 @@ read -p "enter hostname: " vm_name
 
 a=$(. /etc/os-release && echo "$VERSION_CODENAME")
 
-if [ "$a" = 'bullseys']; then
+if [ "$a" = 'bullseye' ]; then
 echo "deb http://deb.debian.org/debian bullseye main contrib non-free
 deb-src http://deb.debian.org/debian bullseye main contrib non-free
 deb http://deb.debian.org/debian-security bullseye/updates main contrib non-free
@@ -12,22 +12,9 @@ deb http://deb.debian.org/debian bullseye-updates main contrib non-free
 deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free" > /etc/apt/sources.list
 fi
 
-
-
 apt update && \
 apt install -y debconf-utils && \
 echo 'libc6 libraries/restart-without-asking boolean true' |  debconf-set-selections
-
-
-deb http://deb.debian.org/debian bullseye main contrib non-free
-deb-src http://deb.debian.org/debian bullseye main contrib non-free
-deb http://deb.debian.org/debian-security bullseye/updates main contrib non-free
-deb-src http://deb.debian.org/debian-security bullseye/updates main contrib non-free
-deb http://deb.debian.org/debian bullseye-updates main contrib non-free
-deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
-
-
-
 
 mkdir /tempare
 mkdir /itm
