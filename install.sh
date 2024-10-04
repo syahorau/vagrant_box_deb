@@ -1,11 +1,5 @@
 #!/bin/bash
 read -p "enter hostname: " vm_name
-
-a=$(. /etc/os-release && echo "$ID")
-
-if [ $a == 'debian']; then
-echo "deb http://deb.debian.org/debian unstable main non-free contrib" >> /etc/apt/sources.list
-fi
 apt update && \
 apt install -y debconf-utils && \
 echo 'libc6 libraries/restart-without-asking boolean true' | sudo debconf-set-selections
