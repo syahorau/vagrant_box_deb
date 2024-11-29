@@ -57,8 +57,9 @@ apt install -y mc zsh ssh sudo tree ntp bash-completion git tmux vim curl cifs-u
 
 # Set hostname 
 hostnamectl set-hostname "$vm_name"
-echo "127.0.0.1 $vm_name
-::1 $vm_name" >> /etc/hosts
+echo "127.0.0.1 localhost 
+127.0.1.1 $vm_name
+::1 $vm_name ip6-localhost ip6-loopback" > /etc/hosts
 
 # Create task for update omz
 echo "#!/bin/bash
